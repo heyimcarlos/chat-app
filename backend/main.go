@@ -148,6 +148,10 @@ func main() {
 
 	app.Get("/room/:roomId/user/:userName", websocket.New(roomStore.wsHandler))
 
+    app.Get("/", func(ctx *fiber.Ctx) error {
+        return ctx.SendString("Hello, World 👋!")
+    })
+
 	app.Get("/env", func(ctx *fiber.Ctx) error {
 		return ctx.SendString("Hello, ENV! " + os.Getenv("TEST_ENV"))
 	})

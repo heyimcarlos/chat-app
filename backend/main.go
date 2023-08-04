@@ -7,6 +7,7 @@ import (
 
 	"github.com/gofiber/contrib/websocket"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 type Client struct {
@@ -135,7 +136,10 @@ func (rs *RoomStore) wsHandler(conn *websocket.Conn) {
 }
 
 func main() {
-	app := fiber.New()
+    app := fiber.New()
+
+    app.Use(cors.New())
+
 	roomStore := NewRoomStore()
 
 	app.Use("/ws", func(ctx *fiber.Ctx) error {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineNumber } from 'react-icons/ai'
+import {API_URL} from '../config'
 
 
 function Form({ setSocket, socket, setMessages }: { socket: WebSocket | null, setSocket: React.Dispatch<React.SetStateAction<WebSocket | null>>, setMessages: React.Dispatch<React.SetStateAction<string[]>> }) {
@@ -10,7 +11,7 @@ function Form({ setSocket, socket, setMessages }: { socket: WebSocket | null, se
         e.preventDefault();
         const formData = new FormData(e.target as HTMLFormElement);
         const data = Object.fromEntries(formData)
-        let socket = new WebSocket(`ws://localhost:3001/room/${data.room}/user/${data.username}`);
+        let socket = new WebSocket(`wss://api.chat-app.heyimcarlos.dev/room/${data.room}/user/${data.username}`);
         socket.onopen = () => {
             console.log("connected")
             setSocket(socket)

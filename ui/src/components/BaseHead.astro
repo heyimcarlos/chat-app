@@ -1,12 +1,12 @@
 ---
 import '../styles/global.css'
 export interface Props {
-  title: string
-  description?: string
-  image?: string
+    title: string
+    description?: string
+    image?: string
 }
 // @TODO: get chat.jpg image
-const { title, description = '', image = '/chat.jpg' } = Astro.props
+const { title, description = '', image = '/me.jpg' } = Astro.props
 ---
 
 <!-- Global Metadata -->
@@ -36,19 +36,22 @@ const { title, description = '', image = '/chat.jpg' } = Astro.props
 <meta property="twitter:image" content={image} />
 
 <script is:inline>
-  const theme = (() => {
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-      return localStorage.getItem('theme')
+const theme = (() => {
+    if (
+        typeof localStorage !== 'undefined' &&
+        localStorage.getItem('theme')
+    ) {
+        return localStorage.getItem('theme')
     }
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark'
+        return 'dark'
     }
     return 'light'
-  })()
+})()
 
-  if (theme === 'light') {
+if (theme === 'light') {
     document.documentElement.classList.remove('dark')
-  } else {
-    document.documentElement.classList.add('dark')
-  }
+} else {
+        document.documentElement.classList.add('dark')
+    }
 </script>

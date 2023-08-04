@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { AiOutlineNumber } from 'react-icons/ai'
-import {API_URL} from '../config'
 
 
 function Form({ setSocket, socket, setMessages }: { socket: WebSocket | null, setSocket: React.Dispatch<React.SetStateAction<WebSocket | null>>, setMessages: React.Dispatch<React.SetStateAction<string[]>> }) {

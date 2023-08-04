@@ -1,0 +1,5 @@
+export const SITE_TITLE = 'Chat App'
+export const SITE_DESCRIPTION = 'Carlos&apos; chat app.'
+export const SITE_URL = 'https://chat.heyimcarlos.dev'
+export const SOURCE_URL = 'https://github.com/heyimcarlos/chat-app'
+export const EMAIL = 'me@heyimcarlos.dev'

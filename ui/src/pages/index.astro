@@ -1,7 +1,6 @@
 ---
 import { SITE_DESCRIPTION, SITE_TITLE } from '../config'
 import Page from '../layouts/page.astro'
-import ChatHeader from '../components/ChatHeader'
 ---
 
 <Page description={SITE_DESCRIPTION} title={SITE_TITLE} lang="en">
@@ -10,7 +9,6 @@ import ChatHeader from '../components/ChatHeader'
         <div
             class="border dark:border-zinc-700 bg-zinc-400 dark:bg-custom-black border-custom-zinc text-custom-zinc w-full h-full min-w-[450px] min-h-[530px] rounded-md"
         >
-        <ChatHeader client:load />
         </div>
     </section>
 </Page>

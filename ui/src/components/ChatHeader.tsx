@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AiOutlineNumber } from 'react-icons/ai'
+import { AiOutlineNumber } from 'react-icons/ai/index.js'
 
 
 function Form({ setSocket, socket, setMessages }: { socket: WebSocket | null, setSocket: React.Dispatch<React.SetStateAction<WebSocket | null>>, setMessages: React.Dispatch<React.SetStateAction<string[]>> }) {

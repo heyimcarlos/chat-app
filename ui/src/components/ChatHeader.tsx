@@ -10,7 +10,7 @@ function Form({ setSocket, socket, setMessages }: { socket: WebSocket | null, se
         e.preventDefault();
         const formData = new FormData(e.target as HTMLFormElement);
         const data = Object.fromEntries(formData)
-        let socket = new WebSocket(`wss://api.chat-app.heyimcarlos.dev/room/${data.room}/user/${data.username}`);
+        let socket = new WebSocket(`wss://api.chat-app.heyimcarlos.dev/${data.room}/${data.username}`);
         socket.onopen = () => {
             console.log("connected")
             setSocket(socket)

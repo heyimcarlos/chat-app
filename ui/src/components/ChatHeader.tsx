@@ -31,12 +31,11 @@ function Form({ setSocket, socket, setMessages }: { socket: WebSocket | null, se
 
     return (
         <form onSubmit={(e) => {
-            console.log("submitting: ", e)
             handleSubmit(e)
         }}>
-            <div className="flex justify-between">
-                {socket ? (
-                    <div className="w-full mr-3">
+            <div className="flex justify-between w-full gap-2">
+                {isConnected ? (
+                    <div className="w-full sm:mr-3">
                         <input
                             onChange={(e) => {
                                 e.preventDefault()
@@ -51,7 +50,7 @@ function Form({ setSocket, socket, setMessages }: { socket: WebSocket | null, se
                         />
                     </div>
                 ) : (
-                    <div className="flex gap-2">
+                    <div className="flex items-center gap-1 sm:gap-2">
                         <div>
                             <input
                                 type="name"
@@ -63,14 +62,14 @@ function Form({ setSocket, socket, setMessages }: { socket: WebSocket | null, se
                         </div>
 
                         <div className="relative w-28">
-                            <div className="pointer-events-none absolute inset-y-0 pb-0.5 left-0 flex items-center pl-3">
-                                <AiOutlineNumber className="h-5 w-5 text-zinc-500" aria-hidden="true" />
+                            <div className="pointer-events-none absolute inset-y-0 pb-0.5 left-0 flex items-center pl-2 sm:pl-3">
+                                <AiOutlineNumber className="h-4 w-4 sm:h-5 sm:w-5 text-zinc-500" aria-hidden="true" />
                             </div>
                             <input
                                 type="number"
                                 name="room"
                                 id="room"
-                                className="block w-full rounded-md border border-custom-zinc dark:border-zinc-800 dark:bg-custom-black placeholder:text-zinc-400 text-base pr-2 py-2 pl-10 text-custom-zinc dark:text-zinc-400 dark:ring-custom-white shadow-sm sm:leading-6"
+                                className="block w-full rounded-md border border-custom-zinc dark:border-zinc-800 dark:bg-custom-black placeholder:text-zinc-400 text-base pr-0 sm:pr-2 py-2 pl-8 sm:pl-10 text-custom-zinc dark:text-zinc-400 dark:ring-custom-white shadow-sm sm:leading-6"
                                 placeholder="room"
                             />
                         </div>
@@ -145,26 +144,25 @@ export default function ChatHeader() {
             </div>
             <Form setMessages={setMessages} setSocket={setSocket} socket={socket} />
             <div className="mt-5 h-[450px] relative">
-
-                <pre className="relative h-full text-custom-zinc dark:text-zinc-500 bg-zinc-50 dark:bg-zinc-200 p-4 overflow-y-scroll">
+                <pre className="relative h-full text-custom-zinc dark:text-zinc-500 bg-zinc-50 dark:bg-zinc-200 p-4 whitespace-break-spaces overflow-x-hidden overflow-y-scroll">
                     {socket ? (
                         <>
                             {
                                 messages.map((message, idx) => {
                                     if (message.startsWith("you just joined room: ")) {
                                         return (
-                                            <p key={idx} className="text-green-500">{message}</p>
+                                            <p key={idx} className="break-words text-green-500">{message}</p>
                                         )
                                     }
                                     return (
-                                        <p key={idx}>{message}</p>
+                                        <p key={idx} className="break-words">{message}</p>
                                     )
 
                                 })
                             }
                         </>
                     ) : (
-                        <div>Please connect to a room to start chatting...</div>
+                        <p className="break-words">Please connect to a room to start chatting...</p>
                     )}
                 </pre>
             </div>

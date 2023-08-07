@@ -3,12 +3,14 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/heyimcarlos/chat-app/backend/api"
 	"log"
+	"os"
+
+	"github.com/heyimcarlos/chat-app/backend/api"
 )
 
 func main() {
-	listenAddr := flag.String("listenaddr", ":3000", "server listen address")
+	listenAddr := flag.String("listenaddr", os.Getenv("PORT"), "server listen address")
 
 	server := api.NewServer(*listenAddr)
 	fmt.Println("Server running on: ", *listenAddr)

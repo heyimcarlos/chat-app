@@ -29,7 +29,7 @@ func (s *Server) Run() error {
     fmt.Println("Server running on: ", s.listenAddr)
 
 	// start server
-	return app.Listen("0.0.0.0" + s.listenAddr)
+    return app.Listen("0.0.0.0:" + s.listenAddr)
 }
 
 func buildServer() (*fiber.App, error) {

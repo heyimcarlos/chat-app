@@ -25,7 +25,7 @@ func (c *Client) read(room *Room) {
 			break
 		}
 
-		prepareMessage := fmt.Sprintf("[%s]: %s", c.name, msg)
+		prepareMessage := fmt.Sprintf("%s: %s", c.name, msg)
 		room.broadcast <- []byte(prepareMessage)
 	}
 }
@@ -119,6 +119,7 @@ func (rs *RoomStore) WsHandler(conn *websocket.Conn) {
 	user := conn.Params("name")
 
 	room, exists := rs.rooms[roomNum]
+	// room, exists := rs.GetRoom(roomNum)
 	if !exists {
 		room, _ = rs.CreateRoom(roomNum)
 	}

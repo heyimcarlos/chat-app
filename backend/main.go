@@ -1,18 +1,34 @@
 package main
 
 import (
-	"flag"
-	"fmt"
+	// "flag"
+	// "fmt"
 	"log"
-	"os"
+	"net/http"
+	// "os"
 
-	"github.com/heyimcarlos/chat-app/backend/api"
+	// "github.com/heyimcarlos/chat-app/backend/api"
+	"github.com/heyimcarlos/chat-app/backend/internal"
 )
 
 func main() {
-	listenAddr := flag.String("listenaddr", os.Getenv("PORT"), "server listen address")
+	// listenAddr := flag.String("listenaddr", os.Getenv("PORT"), "server listen address")
 
-	server := api.NewServer(*listenAddr)
-	fmt.Println("Server running on: ", *listenAddr)
-	log.Fatal(server.Run())
+	// server := api.NewServer(*listenAddr)
+	// fmt.Println("Server running on: ", *listenAddr)
+	// log.Fatal(server.FiberRun())
+
+	setupAPI()
+}
+
+func setupAPI() {
+
+	manager := internal.NewManager()
+
+	// gorilla websocket handler
+	http.HandleFunc("/ws", manager.ServeWS)
+	log.Println("Server running on: ", ":3001")
+
+	// init server
+	log.Fatal(http.ListenAndServe(":3001", nil))
 }

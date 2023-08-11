@@ -2,6 +2,8 @@ package api
 
 import (
 	"fmt"
+	// "log"
+	// "net/http"
 
 	"github.com/gofiber/contrib/websocket"
 	"github.com/gofiber/fiber/v2"
@@ -20,16 +22,16 @@ func NewServer(listenAddr string) *Server {
 	}
 }
 
-func (s *Server) Run() error {
+func (s *Server) FiberRun() error {
 	app, err := buildServer()
 	if err != nil {
 		return err
 	}
 
-    fmt.Println("Server running on: ", s.listenAddr)
+	fmt.Println("Server running on: ", s.listenAddr)
 
 	// start server
-    return app.Listen("0.0.0.0:" + s.listenAddr)
+	return app.Listen("0.0.0.0:" + s.listenAddr)
 }
 
 func buildServer() (*fiber.App, error) {
@@ -49,8 +51,8 @@ func buildServer() (*fiber.App, error) {
 		return fiber.ErrUpgradeRequired
 	})
 
-	// add websocket route
-	app.Get("/ws/:room/:name", websocket.New(internal.NewRoomStore().WsHandler))
+	// gofiber websocket handler
+	app.Get("/gofiber/:room/:name", websocket.New(internal.NewRoomStore().WsHandler))
 
 	return app, nil
 }

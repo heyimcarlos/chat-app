@@ -1,19 +1,23 @@
 ---
-import ThemeToggle from "./ThemeToggleButton";
+import ThemeToggle from './ThemeToggleButton'
+import { PORTFOLIO_URL } from '../config'
 ---
 
 <header class="fixed w-full p-2 z-20 backdrop-blur-md">
-  <div class="mx-auto max-w-3xl">
-    <nav class="flex items-center gap-3 text-base">
-      <a href="/" class="group">
-        <h2
-          class="font-semibold tracking-lighter p-2 lg:pl-0 font-mplus text-lg"
-        >
-          Chat App
-        </h2>
-      </a>
-      <div class="flex-1"></div>
-      <ThemeToggle client:load />
-    </nav>
-  </div>
+    <div class="mx-auto max-w-3xl">
+        <nav class="flex items-center gap-3 text-base">
+            <a href="/" class="group">
+                <h2
+                    class="font-semibold tracking-lighter p-2 lg:pl-0 font-mplus text-lg"
+                >
+                    Chat App
+                </h2>
+            </a>
+            <div class="flex-1"></div>
+            <a href={PORTFOLIO_URL} class="group p-2 hover:bg-zinc-800 rounded-md">
+                    Back to Portfolio
+            </a>
+            <ThemeToggle client:load />
+        </nav>
+    </div>
 </header>
